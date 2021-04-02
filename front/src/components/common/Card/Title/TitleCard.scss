@@ -1,0 +1,14 @@
+.title-card{
+    box-sizing:content-box;
+
+    &-header{
+        padding-left:1rem;
+        font-size:2rem;
+        font-weight:bold;
+        border-left:3px solid white;
+    }
+    
+    &-article{ 
+        padding-left:1rem;
+    }
+}

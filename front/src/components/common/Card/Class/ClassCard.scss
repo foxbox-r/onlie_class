@@ -1,0 +1,29 @@
+
+.classCard{
+
+    background-color:rgb(241, 241, 241);
+    border-radius:0.4rem;
+    margin-bottom:1rem;
+    &-header{  
+        border-radius:0.4rem;
+        padding:1rem;
+        background:tomato;
+        color:white;
+        h3{font-size:1.4rem;}
+        p{font-size:0.9rem;}
+        cursor: pointer;
+    }
+    &-article{
+        padding:1rem;
+    }
+
+    &-footer{
+        text-align:right;
+        font-weight:bold;
+        padding:1rem;
+    }
+
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+}

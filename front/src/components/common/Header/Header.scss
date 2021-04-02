@@ -1,0 +1,175 @@
+@import "../../../utill/colors.scss";
+@import "../../../utill/sizes.scss";
+
+.header{
+    position:absolute;
+    width:100%;
+    top:0;
+    left:0;
+    z-index:100;
+    display:flex;
+    background:tomato;
+    justify-content:center;
+    align-items:center;
+    padding:0.5rem;
+
+
+    &-menu-pc{
+        width:100%;
+        display:flex;
+        justify-content:space-evenly;
+
+        @media screen and (max-width:#{$middle-size}){
+            &{
+                justify-content:space-between;
+            }
+        }
+
+        &-container{
+            display:flex;
+            justify-content:space-between;
+
+            a{
+                margin-right:1.4rem;
+                color:white;
+                font-size:1.1rem;
+                text-decoration:none;
+                padding:0.4rem;
+            }
+
+            @media screen and (max-width:650px){
+                a{
+                    display:none;
+                }
+                #header-logo{
+                    display:inline-block;
+                }
+            }
+        }
+
+        &-button{
+            display:flex;
+            justify-content:center;
+            button{
+                font-size:1rem;
+                color:white;
+                background-color:transparent;
+                border:1px solid white;
+                padding:0.4rem 0.8rem;
+                margin:0 0.5rem;
+                border-radius:4px;
+                transition:all 0.15s;
+
+                &:hover{
+                    background:white;
+                    color:tomato;
+                }
+            }
+
+            .open_menu_button{
+                display:none;
+                position:relative;
+
+                @media screen and (max-width:#{$small-size}){
+                    display:inline-block;
+                }
+            }
+
+            @media screen and (max-width:#{$small-size}){
+                display:flex;
+                align-items:center;
+                justify-content:center;
+
+                button{
+                    display:none;
+                }
+                .open_menu_button{
+                    display:inline-block;
+                    width:1.5rem;
+                    height:1.5rem;
+                    color:white;
+                    // border:1px solid white;
+
+                    span{
+                        display:inline-block;
+                        width:80%;
+                        height:2px;
+                        border-top:2px solid white; 
+                        position:absolute; 
+                        transform:translate(-50%,-50%);
+                    }
+                    span:nth-child(1){
+                        top:20%;
+                        left:50%;
+                    }
+                    span:nth-child(2){
+                        top:50%;
+                        left:50%;
+                    }
+                    span:nth-child(3){
+                        width:50%;
+                        bottom:10%;
+                        left:50%;
+                    }
+                }
+            }
+        }
+    }
+
+    &-menu-mobile{
+        transition:all .3s;
+        position:fixed;
+        width:65%;
+        height:100%;
+        right:-100%;
+        top:0;
+        background-color:aliceblue;
+        border-top-left-radius:1rem;
+        border-bottom-left-radius:1rem;
+        
+        .slide-bar-wrapper{
+            display:flex;
+            flex-direction:column;
+            .header-menu-content-item:nth-child(1){
+                font-weight:bold;
+                height:6rem;
+                font-size:1.2rem;
+            }
+            .header-menu-content-item{
+                display:inline-block;
+                width:100%;
+                text-align:center;
+                height:4rem;
+                text-decoration:none;
+                color:black;
+                font-size:1rem;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+        }
+    }
+
+    .slide-bar-background{
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        background:rgba(0,0,0,0.7);
+    }
+
+    .open-slide-bar{
+        right:0%;
+    }
+
+    &-menu-content-item{
+    }
+    &-menu-content-item-active{
+        border-bottom:3px solid white;
+    }
+
+
+
+
+}

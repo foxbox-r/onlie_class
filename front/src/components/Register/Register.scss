@@ -1,0 +1,145 @@
+@import "../../utill/colors.scss";
+@import "../../utill/sizes.scss";
+@import "../../utill/utill.scss";
+
+.register{
+    &-header{
+        height:400px;
+        background-color:#{$gamong-light};
+        position:relative;
+        &-wrapper{
+            position:absolute;
+            left:50%;
+            top:30%;
+            width:70%;
+            transform:translate(-50%,-50%);
+            p{color:white;text-align:center;}
+            p:nth-child(1){font-size:2.5rem;}
+            p:nth-child(2){font-size:1.1rem;}
+            @media screen and (max-width:#{$small-size}){
+                p:nth-child(1){font-size:2rem;}
+                p:nth-child(2){font-size:0.9rem;}
+            }
+        }
+    }
+
+    &-article{
+        padding:2rem 0;
+        position:absolute;
+        left:50%;
+        top:55%;
+        transform:translate(-50%,-50%);
+        width:480px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color:white;
+        display:flex;
+        flex-direction:column;
+        align-items:center;        
+
+        @media screen and (max-width:#{$small-size}){
+            width:320px;
+            top:65%;
+        }
+
+        &-header{
+            p{
+                height:30%;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                font-size:1.6rem;
+                font-weight:bold;
+                padding-top:10px;
+            }
+        }
+        &-input{
+            width:80%;
+            input{
+                height:3rem;
+                border-radius: 2px;
+                outline-style: none;
+                font-size:1.1rem;
+                padding:0.5rem;
+                transition:all .15s;
+                margin-top:0.4rem;
+                &:focus{
+                    border-color:#{$gamong-dark};
+                }
+
+                @media screen and (max-width:#{$small-size}){
+                    height:2rem;
+                }
+            }
+            .name_class_number{
+                &-name{width:100%;}
+                &-grade{width:33.3%;margin-right:1%;}
+                &-class{width:32.3%;margin-right:1%;}
+                &-number{width:32.3%;}
+            }
+            .completeBox{
+                background:tomato;
+                height:3rem;
+                border-radius: 2px;
+                font-size:1.1rem;
+                padding:0.5rem;
+                margin-top:0.4rem;
+                color:white;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+            .email_author{
+                display:flex;
+
+                &-email{width:70%;margin-right:1%;}
+                &-author{
+                    display:flex;justify-content:center;align-items:center;
+                    width:29%;background-color:tomato;color:white;border:none;
+                    &:hover{
+                        background:white;
+                        color:tomato;
+                        border:1px solid tomato;
+                    }
+                }
+            }
+            .code_check{
+                display:flex;justify-content:center;align-items:center;
+                &-code{width:70%;margin-right:1%;}
+                &-check{
+                    width:29%;background-color:tomato;color:white;border:none;
+                    &:hover{
+                        background:white;
+                        color:tomato;
+                        border:1px solid tomato;
+                    }
+                }
+            }
+            .password{
+                input{width:100%;}
+            }
+            .check_password{
+                input{width:100%;}
+            }
+            .agree{
+                input{}
+                p{font-size:0.8rem;}
+            }
+        }
+        &-footer{
+            div{
+                transition:all 0.15s;
+                cursor: pointer;
+                margin-top:2rem;
+                border:1px solid tomato;
+                border-radius:5px;
+                padding:0.5rem 3rem;
+                background-color:tomato;
+                color:white;
+                &:hover{
+                    background-color:white;
+                    color:tomato;
+                }
+            }
+        }
+    }
+}

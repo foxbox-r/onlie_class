@@ -1,0 +1,46 @@
+.ClassCardWithDetail{
+    width:390px;
+    margin:1rem;
+    border-radius:0.4rem;
+    background-color:rgb(241, 241, 241);
+    &-header{
+        background-color:tomato;color:white;padding:1rem;border-radius:0.4rem;
+        display:flex;
+        justify-content:space-between;
+        &-info{
+            flex-shrink:1;
+            p{font-size:0.9rem;}
+        }
+        &-profile{
+            width:70px;
+            height:70px;
+            flex-shrink:0;
+            div{
+                border-radius:50%;
+                overflow: hidden;
+                height:100%;
+                img{
+                    width:100%;
+                }
+                div{
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    background-color:white;
+                    color:tomato;
+                    font-size:1.2rem;
+                    font-weight:bold;
+                }
+            }
+        }
+    }
+    &-article{
+        padding:1rem;
+        p{font-size:1rem;}
+    }
+    &-footer{padding:1rem;text-align:right;}
+
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+}

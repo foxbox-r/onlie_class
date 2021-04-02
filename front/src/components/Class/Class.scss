@@ -1,0 +1,176 @@
+@import "../../utill/colors.scss";
+@import "../../utill/sizes.scss";
+
+.class{
+    padding-top:$padding-top;
+    &-article{
+        .classes{
+            display:flex;
+            flex-wrap:wrap;
+        }
+        .other-class{}
+        .my-class{}
+
+        .class-title{
+            display:flex;
+            padding:1rem 1rem 0 1rem;
+            &-text{flex-grow:0.2;display:flex;justify-content:center;align-items:center;font-size:1.1rem;color:tomato;}
+            &-line{
+                flex-grow:0.5;
+                position:relative;
+                span{
+                    display:block;
+                    background-color:tomato;
+                    width:100%;
+                    height:2px;
+                    position:absolute;
+                    top:50%;
+                }
+            }
+            &-line-first{flex-grow:0.3;}
+            &-line-second{flex-grow:5;}
+        }
+    }
+
+    &-addClassButton{
+        position:fixed;
+        bottom:3rem;
+        left:3rem;
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        background:#{$gamong};
+        transition:all .35s;
+        cursor:pointer;
+        z-index:100;
+
+        div{
+            width:100%;
+            height:100%;
+            span{
+                display:inline-block;
+                position:absolute;
+                transform:translate(-50%,-50%);
+                border-radius:2px;
+                background-color:white;
+                transition:all .35s;
+            }
+            span:nth-child(1){
+                top:50%;
+                left:50%;
+                width:60%;
+                height:2.5px;
+            }
+            span:nth-child(2){
+                top:50%;
+                left:50%;
+                height:60%;
+                width:2.5px;
+            }
+        }
+        &:hover{
+            // transform:rotate(90deg);
+            span:nth-child(1){
+                width:70%;
+            }
+            span:nth-child(2){
+                height:70%;
+            }
+            background-color:#{$gamong-dark};
+        }
+    }
+
+    &-addClassButton-open{
+        transform:rotate(45deg);
+    }
+}
+
+$top-height:45%;
+
+
+.addClassWindow{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:white;
+    top:0;
+    left:0;
+    &-header{
+        height:$top-height;
+        background-color:#{$gamong};
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding-bottom:100px;
+        
+        article{
+            p{color:white;text-align:center;}
+            p:nth-child(1){
+                font-size:2rem;
+            }
+            p:nth-child(2){
+                font-size:1.1rem
+            }
+        }
+    }
+    // form 박스
+    &-article{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color:white;
+        position:absolute;
+        top:$top-height;
+        left:50%;
+        transform:translate(-50%,-50%);
+        width:30%;
+        padding:2rem;
+        border-radius:0.5rem;
+
+        header{
+            text-align:center;
+            font-size:1.5rem;
+            font-weight:bold;
+        }
+        .article-input{
+            &-inputBox{
+                margin-top:2rem;
+                border-radius:3px;
+                .CustomInput{
+                    width:100%;
+                    height:3rem;
+                    padding:1rem;
+                    font-size:1rem;
+                    &:focus{
+                        border-color:$gamong;
+                    }
+                }
+            }
+            .joinButton{
+                background-color:tomato;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                color:white;
+                font-size:1.2rem;
+                padding:0.7rem 0;
+                transition:all .35s;
+                border:1px solid white;
+
+                &:hover{
+                    background:white;
+                    border:1px solid tomato;
+                    color:tomato;
+                }
+            }
+        }
+
+        @media screen and (max-width:#{$small-size}){
+            width:80%;
+        }
+    }
+    &-footer{
+        height:55%;
+    }
+}

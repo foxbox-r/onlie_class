@@ -1,0 +1,136 @@
+@import "../../utill/colors.scss";
+@import "../../utill/sizes.scss";
+
+.profile{
+    position:relative;
+    padding-top:$padding-top;
+    &-info{
+        position:fixed;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        top:90px;
+        left:8%;
+        width:25%;
+        padding:1rem;
+
+        &-sub-box{
+            margin:1rem 0;
+            font-size:1.2rem;
+            .CustomInput{
+                font-size:1.2rem;
+                border:none;
+                border-bottom:1px solid black;
+                text-align:center;
+            }
+            .name{}
+            .grade{width:3rem;}
+            .class{width:3rem;padding:0;}
+            .number{width:3rem;}
+            .email{}
+        }
+
+        &-profileBox{
+            display:flex;
+            justify-content:center;
+            padding:1rem;
+            .profile-img-box{
+                width:300px;
+                height:300px;
+                // border:1px solid black;
+                border-radius:50%;
+                overflow:hidden;
+            }
+            .profile-img{
+                img{width:100%;}
+            }
+            .profile-base{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                font-size:6rem;
+                background-color:tomato;
+                color:white;
+            }
+        }
+        &-nameBox{}
+        &-gradeBox{}
+        &-emailBox{}
+        &-setting{// setting button
+            // margin-top:2rem;
+            div{
+                cursor: pointer;
+                background-color:tomato;color:white;
+                display:flex;justify-content:center;align-items:center;
+                padding:0.8rem;
+                border-radius:0.2rem;
+                transition:all .2s;
+                border:1px solid white;
+                &:hover{
+                    background-color:white;color:tomato;border-color:tomato;
+                }
+            }
+        }
+    }
+    &-myClass{
+        position:absolute;
+        right:8%;
+        top:90px;
+        width:55%;
+
+        &-create{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            margin-bottom:1rem;
+            border-radius:0.3rem;
+            padding:1rem;
+            &-inputBox{
+                margin:0.8rem 0;
+
+                .input{
+                    width:100%;
+                    font-size:1rem;
+                    padding:1rem;
+                    // border-radius:0.2rem;
+                    border:none;
+                    border-bottom:1px solid black;
+                }
+                .title{
+                    height:4rem;
+                    padding-bottom:0.3rem;
+                }
+                .description{
+                    height:7rem;
+                    border:1px solid white;
+                    border-bottom:1px solid black;
+                    &:focus{
+                        outline:none;
+                    }
+                }
+                .create{
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    border:1px solid white;
+                    font-size:1.2rem;
+                    font-weight:bold;
+                    transition:all .23s;
+                    border-radius:0.3rem;
+                    background-color:tomato;
+                    color:white;
+                    &:hover{
+                        background-color:white;
+                        color:tomato;
+                        border-color:tomato;
+                    }
+                }
+            }
+        }
+        &-info{
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            padding:1rem;
+            &-title{
+                color:tomato;
+                font-size:1.2rem;
+                margin-bottom:1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,108 @@
+@import "../../utill/colors.scss";
+@import "../../utill/sizes.scss";
+
+.main{
+    display:flex;
+    flex-direction:column;
+
+    &-header{
+        height:481px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        
+        .article-wrapper{
+            display:flex;
+            justify-content:start;
+            align-items:center;
+            height:100%;
+            width:60%;
+
+            article{
+                text-align:center;
+                font-weight:bold;
+                p{
+                    margin:0.4rem 0;
+                }
+                p:nth-child(1){
+                    font-size:1.5rem;
+                }
+                p:nth-child(2){
+                    font-size:1.8rem;
+                }
+                button{
+                    margin-top:1rem;
+                    background:transparent;
+                    padding:0.3rem 1.2rem;
+                    border-radius:4px;
+                    font-size:1.1rem;
+                    transition:all 0.15s;
+    
+                    &:hover{
+                        background-color:tomato;
+                        color:white;
+                        border:2px solid white;
+                    }
+                }
+            }
+        }
+        
+        @media screen and (max-width:#{$middle-size}){
+            justify-content:start;
+            padding-left:1rem;
+        }
+
+        @media screen and (max-width:#{$small-size}){
+            justify-content:center;
+        }
+    }
+
+    &-article{
+        background-color:tomato;
+        display:flex;
+        justify-content:center;
+        color:white;
+
+        .article-wrapper{   
+            width:60%;
+            .main-article-card-container{
+                .card-container{
+                    display:flex;
+                    margin:5rem 0;
+
+                    .title-card{
+                        width:50%;
+                    }
+
+                    @media screen and (max-width:#{$small-size}){
+                        flex-direction:column;
+                        .title-card{
+                            width:100%;
+                        }
+                    }
+                }
+            }
+
+            @media screen and (max-width:#{$middle-size}){
+                width:100%;
+                padding-left:1rem;
+            }
+        }
+    }
+    
+    &-footer{
+        background-color:rgb(204, 204, 204);
+        display:flex;
+        justify-content:center;
+        .footer-wrapper{
+            width:60%;
+            text-align:center;
+            p{
+                margin:0.5rem;
+                font-size:.9rem;
+                font-weight:bold;
+                color:rgb(129, 129, 129);
+            }
+        }
+    }
+}
