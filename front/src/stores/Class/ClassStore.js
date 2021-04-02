@@ -14,7 +14,31 @@ class ClassStore{
     @observable isJoinClass = false;
     @observable isJoinClassLoading = false;
     @observable isJoinClassError = null;
+
+    @observable isGetCurrentClassInfo = false;
+    @observable isGetCurrentClassInfoLoading = false;
+    @observable isGetCurrentClassInfoError = null;
  
+    @action
+    tryGetCurrentClassInfo = async (classId) => {
+        this.isGetCurrentClassInfoLoading = true;
+        this.isGetCurrentClassInfoError = null;
+        this.isGetCurrentClassInfo = false;
+
+        const data = await ClassApi.getCurrentClassInfo(classId);
+
+        console.log("from tryGetCurrentClassInfo",data);
+
+        if(data.result){
+            this.isGetCurrentClassInfo = true;
+        } else{
+            this.isGetCurrentClassInfoError = data.msg;
+        }
+        this.isGetCurrentClassInfoLoading = false;
+
+        // return data;
+    }
+
     @action
     tryJoinClass = async (code,userId) => {
         this.isJoinClassLoading = true;

@@ -2,6 +2,21 @@ import Api from "../../lib/customAxios"
 
 class JoinApi {
 
+    async getCurrentClassInfo(classId){
+        try{
+
+            const {data} = await Api.get(`/class/about/${classId}`);
+            
+            return data;
+        } catch(error){
+            console.error(error);
+            return {
+                result:false,
+                msg:"자세한 클래스정보를 요청하는 과정에서 에러"
+            };
+        }
+    }
+
     async joinClass(code,userId){
         try{
             const body ={

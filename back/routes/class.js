@@ -116,4 +116,21 @@ router.post("/",isLoggedIn,async (req,res,next)=>{
     }
 })
 
+router.get("/about/:classId",isLoggedIn,async (req,res,next)=>{
+    try{
+        console.log(req.params);
+
+        res.json({
+            result:true,
+            msg:"good"
+        })
+    } catch(error){
+        console.error(error);
+        res.json({
+            result:false,
+            msg:"자세한 클래스정보를 찾는데 실패했습니다.",
+        })
+    }
+});
+
 module.exports = router;
