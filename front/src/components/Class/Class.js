@@ -11,7 +11,6 @@ const Class = ({
     onClickAddClassButton,
     onClickJoinClassButton,
 }) => {
-    console.log(classStore);
     return (
         <>
             <div className="class">

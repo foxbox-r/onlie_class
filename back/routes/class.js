@@ -21,6 +21,13 @@ router.post("/join",isLoggedIn,async (req,res,next)=>{
             });
         } 
 
+        if(exClass.ownerId === userId){
+            return res.json({
+                result:false,
+                msg:"자신의 수업은 이미 가입이 된 상태입니다.",
+            });
+        }
+
         await exClass.addStudent(userId); 
         
         const user = await User.findOne({
@@ -40,8 +47,6 @@ router.post("/join",isLoggedIn,async (req,res,next)=>{
                 }
             ]
         });
-
-        console.log(joinedClass);
 
         return res.json({
             result:true,

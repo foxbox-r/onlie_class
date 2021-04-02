@@ -26,6 +26,17 @@ const ProfileContainer = () => {
         }
     },[classStore.isCreateClass]);
 
+    useEffect(()=>{
+        if(meStore.isRefreshMyInfo){
+            setEditName(certify.me.name);
+            setEditGrade(certify.me.grade);
+            setEditClass(certify.me.class);
+            setEditNumber(certify.me.number);
+            setEditEmail(certify.me.email);
+            setEditMode(false);
+        }
+    },[meStore.isRefreshMyInfo,certify.me])
+
     const [title,setTitle] = useState("");
     const [description,setDescription] = useState("");
     const [editMode,setEditMode] = useState(false);

@@ -64,6 +64,7 @@ router.post("/checkCode",async(req,res,next)=>{
             where:{
                 email,
                 type:""+type,
+                is_certified:0,
             },
             attributes:{
                 include:["email","code","type"]
