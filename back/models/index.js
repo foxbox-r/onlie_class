@@ -10,6 +10,7 @@ db.Comment = require("./comment")(sequelize,Sequelize);
 db.User = require("./user")(sequelize,Sequelize);
 db.Class = require("./class")(sequelize,Sequelize);
 db.Email_auth = require("./email_auth")(sequelize,Sequelize);
+db.Subject = require("./subject")(sequelize,Sequelize);
 
 Object.keys(db).forEach(modelName => {//db모델들 associate 연산
   if (db[modelName].associate) {

@@ -30,6 +30,7 @@ module.exports = (sequelize,DataTypes)=>{
         db.Class.hasMany(db.Comment);
         db.Class.belongsToMany(db.User,{as:"Liker",through:"class_star"});
         db.Class.belongsToMany(db.User,{as:"Student",through:"class_user"});
+        db.Class.hasMany(db.Subject);
     }
 
     return Class; 
