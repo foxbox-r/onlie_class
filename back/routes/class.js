@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const db = require("../models");
-const {Class,User} = db;
+const {Class,User,Subject} = db;
 const cryptoRandomString = require('crypto-random-string');
 const {isLoggedIn,isNotLoggedIn} = require("./middlewares");
 
@@ -116,13 +116,23 @@ router.post("/",isLoggedIn,async (req,res,next)=>{
     }
 })
 
-router.get("/about/:classId",isLoggedIn,async (req,res,next)=>{
+// POST class/about body:{userId,classId}
+router.post("/about",isLoggedIn,async (req,res,next)=>{
     try{
-        console.log(req.params);
+        console.log(req.body);
+
+        const {classId,userId} = req.body;
+
+        const subjects = await Subject.findAll({
+            where:{
+                classId
+            }
+        });
 
         res.json({
             result:true,
-            msg:"good"
+            msg:"자세한 클래스정보를 찾는데 성공했습니다.",
+            data:subjects,
         })
     } catch(error){
         console.error(error);

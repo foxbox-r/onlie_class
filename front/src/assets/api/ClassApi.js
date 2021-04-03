@@ -2,10 +2,15 @@ import Api from "../../lib/customAxios"
 
 class JoinApi {
 
-    async getCurrentClassInfo(classId){
+    async getCurrentClassInfo(classId,userId){
         try{
 
-            const {data} = await Api.get(`/class/about/${classId}`);
+            const body = {
+                classId,
+                userId,
+            }
+
+            const {data} = await Api.post(`/class/about`,body);
             
             return data;
         } catch(error){

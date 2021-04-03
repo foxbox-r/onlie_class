@@ -4,6 +4,12 @@ import ClassApi from "../../assets/api/ClassApi"
 
 @autobind
 class ClassStore{
+    rootStore;
+
+    constructor(root){
+        this.rootStore = root;
+    }
+
     @observable myClasses = [];
     @observable joinedMyClasses = [];
 
@@ -21,11 +27,18 @@ class ClassStore{
  
     @action
     tryGetCurrentClassInfo = async (classId) => {
+
+        const userId =  this.rootStore.CertifyStore.me.id;
+        const isThereJoined = this.rootStore.CertifyStore.joinedMyClasses.find(v=>v.ownerId === userId);
+        const isThereMine = this.rootStore.CertifyStore.myClasses.find(v=>v.ownerId === userId);
+
+        console.log(isThereJoined,isThereMine);
+
         this.isGetCurrentClassInfoLoading = true;
         this.isGetCurrentClassInfoError = null;
         this.isGetCurrentClassInfo = false;
 
-        const data = await ClassApi.getCurrentClassInfo(classId);
+        const data = await ClassApi.getCurrentClassInfo(Number(classId),userId);
 
         console.log("from tryGetCurrentClassInfo",data);
 
@@ -36,7 +49,7 @@ class ClassStore{
         }
         this.isGetCurrentClassInfoLoading = false;
 
-        // return data;
+        return data;
     }
 
     @action

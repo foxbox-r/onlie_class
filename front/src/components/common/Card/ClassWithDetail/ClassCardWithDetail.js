@@ -1,15 +1,21 @@
 import React from 'react';
-import "./ClassCardWithDetail.scss"
+import "./ClassCardWithDetail.scss";
+import {useHistory} from "react-router-dom";
 
 const ClassCardWithDetail = ({
     _class,
 }) => {
+    const history = useHistory();
     const {title,description,owner,code} = _class;
     const {name,grade,number,profile_img} = owner;
 
+    const onClickAbuotClassTitle = ()=>{
+        history.push(`/class/about/${_class.id}`);
+    }
+
     return (
         <div className="ClassCardWithDetail">
-            <header className="ClassCardWithDetail-header">
+            <header onClick={onClickAbuotClassTitle} className="ClassCardWithDetail-header">
                 <div className="ClassCardWithDetail-header-info">
                     <h2>{title}</h2>
                     <p>{grade}학년 {owner.class}반 {number}번 {name}</p>
