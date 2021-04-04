@@ -26,6 +26,7 @@ const LoginContainer = () => {
         });
     },[email,password,certify]);
 
+    // 로그인 했다면
     useEffect(()=>{
         console.log("useEffect login",certify.me);
         if(certify.me){

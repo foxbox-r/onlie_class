@@ -28,28 +28,36 @@ class ClassStore{
     @action
     tryGetCurrentClassInfo = async (classId) => {
 
-        const userId =  this.rootStore.CertifyStore.me.id;
-        const isThereJoined = this.rootStore.CertifyStore.joinedMyClasses.find(v=>v.ownerId === userId);
-        const isThereMine = this.rootStore.CertifyStore.myClasses.find(v=>v.ownerId === userId);
+        const userId = this.rootStore.CertifyStore.me.id;
+        const classStore = this.rootStore.ClassStore; 
+        const isThereJoined = classStore.joinedMyClasses.find(v=>v.ownerId === userId);
+        const isThereMine = classStore.myClasses.find(v=>v.ownerId === userId);
 
         console.log(isThereJoined,isThereMine);
+
+        if(!(isThereJoined || isThereMine)){
+            return {
+                result:false,
+                msg:"수업을 볼수있는 권한이 없습니다.",
+            }
+        }
 
         this.isGetCurrentClassInfoLoading = true;
         this.isGetCurrentClassInfoError = null;
         this.isGetCurrentClassInfo = false;
 
-        const data = await ClassApi.getCurrentClassInfo(Number(classId),userId);
+        const response = await ClassApi.getCurrentClassInfo(Number(classId),userId);
 
-        console.log("from tryGetCurrentClassInfo",data);
+        console.log("from tryGetCurrentClassInfo",response);
 
-        if(data.result){
+        if(response.result){
             this.isGetCurrentClassInfo = true;
         } else{
-            this.isGetCurrentClassInfoError = data.msg;
+            this.isGetCurrentClassInfoError = response.msg;
         }
         this.isGetCurrentClassInfoLoading = false;
 
-        return data;
+        return response;
     }
 
     @action
@@ -58,19 +66,19 @@ class ClassStore{
         this.isJoinClassError = null;
         this.isJoinClass = false;
 
-        const data = await ClassApi.joinClass(code,userId);
+        const response = await ClassApi.joinClass(code,userId);
 
-        console.log("from tryJoinClass",data);
+        console.log("from tryJoinClass",response);
 
-        if(data.result){
+        if(response.result){
             this.isJoinClass = true;
-            this.joinedMyClasses = data.data;
+            this.joinedMyClasses = response.data;
         } else{
-            this.isJoinClassError = data.msg;
+            this.isJoinClassError = response.msg;
         }
         this.isJoinClassLoading = false;
 
-        // return data;
+        // return response;
     }
 
     @action
@@ -79,19 +87,19 @@ class ClassStore{
         this.isCreateClassError = null;
         this.isCreateClass = false;
 
-        const data = await ClassApi.createClass(title,description,user_id);
+        const response = await ClassApi.createClass(title,description,user_id);
 
-        console.log("from tryCreateClass",data);
+        console.log("from tryCreateClass",response);
 
-        if(data.result){
+        if(response.result){
+            this.myClasses = response.data;
             this.isCreateClass = true;
-            this.myClasses = data.data;
         } else{
-            this.isCreateClassError = data.msg;
+            this.isCreateClassError = response.msg;
         }
         this.isCreateClassLoading = false;
 
-        return data;
+        return response;
     }
 
 }

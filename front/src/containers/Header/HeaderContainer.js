@@ -6,6 +6,7 @@ const HeaderContainer = () => {
     const {store} = useStore();
     const certify = store.CertifyStore;
 
+    // 로그아웃
     const onClickLogout = useCallback(async ()=>{
         await certify.tryLogout().then(response=>{
             if(response.result){

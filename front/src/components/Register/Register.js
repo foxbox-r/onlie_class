@@ -17,7 +17,7 @@ const Register = ({
     onClickCheckCode,
     onSameEvent,
     onClickRegister,
-    isSame,a
+    isSame,
 }) => {
 
     return (
@@ -29,7 +29,7 @@ const Register = ({
                 </div>
             </header>
             <article className="register-article">
-                <header onClick={a} className="register-article-header">
+                <header className="register-article-header">
                     <p>회원가입</p>
                 </header>
                 <article className="register-article-input">

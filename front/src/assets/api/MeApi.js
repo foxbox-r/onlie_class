@@ -4,7 +4,6 @@ class MeApi {
 
     async refreshMyInfo(userId){
         try{
-            console.log("userId",userId);
             const {data} = await Api.get(`/me/${userId}`);
 
             return data;

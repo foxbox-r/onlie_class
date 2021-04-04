@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookie from "js-cookie";
 import env from "../env"
 
 const Api = axios.create({

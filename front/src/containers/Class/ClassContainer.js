@@ -2,11 +2,9 @@ import React,{useState,useCallback,useEffect} from 'react';
 import Class from "../../components/Class"
 import {observer} from "mobx-react"
 import useStore from "../../lib/hooks/useStore"
-import {useHistory} from "react-router-dom"
 
 const ClassContainer = () => {
 
-    const history = useHistory();
     const {store} = useStore();
     const certify = store.CertifyStore;
     const classStore = store.ClassStore;
@@ -23,12 +21,6 @@ const ClassContainer = () => {
     const onClickJoinClassButton = useCallback(()=>{
         classStore.tryJoinClass(code,certify.me.id);
     },[code,certify.me,classStore]);
-
-    useEffect(()=>{
-        if(!certify.me){
-            history.push('/');
-        }
-    },[certify.me,history]);
 
     useEffect(()=>{
         if(classStore.isJoinClass){

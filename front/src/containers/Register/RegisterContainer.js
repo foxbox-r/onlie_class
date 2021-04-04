@@ -20,19 +20,15 @@ const RegisterContainer = () => {
     const [check,setCheck] = useState("");
     const [isSame,setIsSame] = useState(null);
 
-    // 모두동의 체크박스
-    const [agree,setAgree] = useState(false);
-
-
     // 이메일 인증코드 요청
     const onClickCertifiEmail = useCallback(()=>{
         certify.tryCertifiEmail(email,1);
-    },[email])
+    },[email,certify])
 
     //이메일 인증코드 확인 요청
     const onClickCheckCode = useCallback(()=>{
         certify.tryCheckCode(email,code,1); // 이메일,코드,타입
-    },[email,code]) 
+    },[email,code,certify]) 
 
     //회원가입 요청
     const onClickRegister = useCallback(()=>{
@@ -50,23 +46,19 @@ const RegisterContainer = () => {
         }else{
             setIsSame(false);
         }
-    },[password,check]);
+    },[password]);
 
-    const a = useCallback(()=>{
-        console.log(certify);
-    },[certify])
-
+    // 회원가입을 마췄거나 이미 로그인을 한상태라면
     useEffect(()=>{
         console.log("useEffect register",certify.me);
         if(certify.isRegist || certify.me){
             history.push("/login")
         }
-    },[certify.isRegist,certify.me])
+    },[certify.isRegist,certify.me,history]);
 
     return (
         <>
             <Register 
-                a={a}
                 certify={certify}
                 name={name}
                 setName={setName}

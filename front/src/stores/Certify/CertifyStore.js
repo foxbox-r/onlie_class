@@ -1,7 +1,6 @@
 import {action,observable} from "mobx"
 import {autobind} from "core-decorators";
 import AuthApi from "../../assets/api/AuthApi";
-import rootStore from "../index";
 
 @autobind
 class CertifyStore{

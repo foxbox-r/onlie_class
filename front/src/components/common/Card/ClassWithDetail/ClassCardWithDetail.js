@@ -9,7 +9,7 @@ const ClassCardWithDetail = ({
     const {title,description,owner,code} = _class;
     const {name,grade,number,profile_img} = owner;
 
-    const onClickAbuotClassTitle = ()=>{
+    const onClickAbuotClassTitle = ()=>{ 
         history.push(`/class/about/${_class.id}`);
     }
 
@@ -22,7 +22,7 @@ const ClassCardWithDetail = ({
                 </div>
                 <div className="ClassCardWithDetail-header-profile">
                     <div>
-                        {profile_img?<img src={profile_img} />:<div>{name[0].toUpperCase()}</div>}
+                        {profile_img?<img alt="img" src={profile_img} />:<div>{name[0].toUpperCase()}</div>}
                     </div>
                 </div>
             </header>

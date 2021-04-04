@@ -30,14 +30,14 @@ const Header = ({
 
         <div className="header-menu-pc">
             <div className="header-menu-pc-container">
-                <a id="header-logo"
-                        // to="/"
-                        // exact
-                        // className="header-menu-content-item"
+                <NavLink id="header-logo"
+                        to="/"
+                        exact
+                        className="header-menu-content-item"
                         // activeClassName="header-menu-content-item-active"
                     >
                     <span>DGSW</span>
-                </a>
+                </NavLink>
 
                 <NavLink
                     to="/"

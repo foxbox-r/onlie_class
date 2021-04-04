@@ -22,22 +22,22 @@ class MeStore{
     tryRefreshMyInfo = async () => {
         this.isRefreshMyInfoLoading = true;
         this.isRefreshMyInfoError = null;
-        const data = await MeApi.refreshMyInfo(this.rootStore.CertifyStore.me.id);
+        const response = await MeApi.refreshMyInfo(this.rootStore.CertifyStore.me.id);
 
-        console.log("from tryRefreshMyInfo",data);
+        console.log("from tryRefreshMyInfo",response);
 
-        if(data.result){
+        if(response.result){
+            this.rootStore.CertifyStore.me = response.data.user;
+            this.rootStore.ClassStore.myClasses = response.data.myClasses;
+            this.rootStore.ClassStore.joinedMyClasses = response.data.joinedMyClasses;
             this.isRefreshMyInfo = true;
-            this.me = data.data.me;
-            this.rootStore.ClassStore.myClasses = data.data.myClasses;
-            this.rootStore.ClassStore.joinedMyClasses = data.data.joinedMyClasses;
         } else{
+            this.isRefreshMyInfoError = response.msg;
             this.isRefreshMyInfo = false;
-            this.isRefreshMyInfoError = data.msg;
         }
         this.isRefreshMyInfoLoading = false;
 
-        return data;
+        return response;
     }
 
     @action
@@ -46,16 +46,15 @@ class MeStore{
         this.isSetMyInfoError = null;
         this.isSetMyInfo = false;
 
-        const data = await MeApi.setMyInfo(settingInfo);
+        const response = await MeApi.setMyInfo(settingInfo);
 
-        console.log("from trySetMyInfo",data);
+        console.log("from trySetMyInfo",response);
 
-        if(data.result){
+        if(response.result){
+            await this.tryRefreshMyInfo();
             this.isSetMyInfo = true;
-            const updatedData = await this.tryRefreshMyInfo();
-            console.log(updatedData);
         } else{
-            this.isSetMyInfoError = data.msg;
+            this.isSetMyInfoError = response.msg;
         }
         this.isSetMyInfoLoading = false;
 

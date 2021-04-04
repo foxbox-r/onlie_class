@@ -2,32 +2,40 @@ import React,{useCallback, useEffect,useState} from 'react';
 import Profile from "../../components/Profile"
 import {observer} from "mobx-react"
 import useStore from "../../lib/hooks/useStore"
-import {useHistory} from "react-router-dom"
 
 const ProfileContainer = () => {
 
-    const history = useHistory();
     const {store} = useStore();
     const certify = store.CertifyStore;
     const classStore = store.ClassStore;
     const meStore = store.MeStore;
 
-    useEffect(()=>{
-        if(!certify.me){
-            history.push('/');
-        }
-    },[certify.me,history])
+    const [title,setTitle] = useState("");
+    const [description,setDescription] = useState("");
+    const [editMode,setEditMode] = useState(false);
 
+    // profile input 값
+    const [editName,setEditName] = useState(null);
+    const [editGrade,setEditGrade] = useState(null);
+    const [editClass,setEditClass] = useState(null);
+    const [editNumber,setEditNumber] = useState(null);
+    const [editEmail,setEditEmail] = useState(null);
+
+    // 수업만들기 input값 지우기
     useEffect(()=>{
-        console.log("useEffect from profile container",classStore.isCreateClass);
         if(classStore.isCreateClass){
             setTitle("");
             setDescription("");
         }
     },[classStore.isCreateClass]);
 
+    const onChangeDescription = useCallback((e)=>{
+        setDescription(e.target.value);
+    },[]);
+
+    // 프로필 정보값 바꾸기
     useEffect(()=>{
-        if(meStore.isRefreshMyInfo){
+        if(meStore.isSetMyInfo && certify.me){
             setEditName(certify.me.name);
             setEditGrade(certify.me.grade);
             setEditClass(certify.me.class);
@@ -35,31 +43,14 @@ const ProfileContainer = () => {
             setEditEmail(certify.me.email);
             setEditMode(false);
         }
-    },[meStore.isRefreshMyInfo,certify.me])
+    },[meStore.isSetMyInfo,certify.me])
 
-    const [title,setTitle] = useState("");
-    const [description,setDescription] = useState("");
-    const [editMode,setEditMode] = useState(false);
-
-    const [editName,setEditName] = useState(certify.me.name);
-    const [editGrade,setEditGrade] = useState(certify.me.grade);
-    const [editClass,setEditClass] = useState(certify.me.class);
-    const [editNumber,setEditNumber] = useState(certify.me.number);
-    const [editEmail,setEditEmail] = useState(certify.me.email);
-
-    const onChangeDescription = useCallback((e)=>{
-        setDescription(e.target.value);
-    },[]);
-
+    // 수업만들기 요청
     const onClickCreateClass = useCallback(async ()=>{
-        try{
-            await classStore.tryCreateClass(title,description,certify.me.id);
-        } catch(error){
-            console.error(error);
-        }
-        
+        await classStore.tryCreateClass(title,description,certify.me.id);
     },[title,description,certify.me,classStore]);
 
+    // 정보수정 요청
     const onClickSettingMyInfo = useCallback(()=>{
         meStore.trySetMyInfo({
             grade:editGrade,
@@ -69,38 +60,46 @@ const ProfileContainer = () => {
             name:editName,
             userId:certify.me.id,
         });
-    },[editClass,editEmail,editGrade,editName,editNumber,certify.me]);
+    },[editClass,editEmail,editGrade,editName,editNumber,certify.me,meStore]);
 
+    // edit <=> cancle toggle 바꾸기 || input값에 me값을 넣기
     const changeModeToggleEditToCancle = useCallback(()=>{
+        setEditName(certify.me.name);
+        setEditGrade(certify.me.grade);
+        setEditClass(certify.me.class);
+        setEditNumber(certify.me.number);
+        setEditEmail(certify.me.email);
         setEditMode(prev=>!prev);
-    },[]);
+    },[certify.me]);
+
+    // 로그아웃하면
+    if(!certify.me)
+        return null;
 
     return (
-        <>
-            <Profile
-                classStore={classStore}
-                certify={certify}
-                title={title}
-                setTitle={setTitle}
-                description={description}
-                onChangeDescription={onChangeDescription}
-                onClickCreateClass={onClickCreateClass}
-                onClickSettingMyInfo={onClickSettingMyInfo}
-                changeModeToggleEditToCancle={changeModeToggleEditToCancle}
-                editMode={editMode}
-                editName={editName}
-                setEditName={setEditName}
-                editGrade={editGrade}
-                setEditGrade={setEditGrade}
-                editClass={editClass}
-                setEditClass={setEditClass}
-                editNumber={editNumber}
-                setEditNumber={setEditNumber}
-                editEmail={editEmail}
-                setEditEmail={setEditEmail}
-                meStore={meStore}
-            />
-        </>
+        <Profile
+            classStore={classStore}
+            certify={certify}
+            title={title}
+            setTitle={setTitle}
+            description={description}
+            onChangeDescription={onChangeDescription}
+            onClickCreateClass={onClickCreateClass}
+            onClickSettingMyInfo={onClickSettingMyInfo}
+            changeModeToggleEditToCancle={changeModeToggleEditToCancle}
+            editMode={editMode}
+            editName={editName}
+            setEditName={setEditName}
+            editGrade={editGrade}
+            setEditGrade={setEditGrade}
+            editClass={editClass}
+            setEditClass={setEditClass}
+            editNumber={editNumber}
+            setEditNumber={setEditNumber}
+            editEmail={editEmail}
+            setEditEmail={setEditEmail}
+            meStore={meStore}
+        />
     )           
 }
 
