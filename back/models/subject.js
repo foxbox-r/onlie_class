@@ -10,7 +10,12 @@ module.exports = (sequelize,DataTypes)=>{
         content:{
             type:DataTypes.TEXT,
             allowNull:true,
-        }
+        }, 
+        click_count:{
+            type:DataTypes.INTEGER,
+            defaultValue:0,
+            allowNull:false,
+        },
     },common.sequelizeDefindSecondParams);  
 
     Subject.associate = (db)=>{

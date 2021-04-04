@@ -4,39 +4,74 @@
 .classAbout{
     padding-top:$padding-top;
     &-wrapper{
-        width:65%;border:1px solid black;margin:0 auto;
-
+        width:65%;margin:0 auto;
+        // border:1px solid black;
         &-header{
-            padding:1rem;
-            padding-bottom:7rem;
-            border:1px solid black;
+            padding:2.5rem 1rem 7rem 2.5rem;
+            // padding-bottom:7rem;
+            // border:1px solid black;
             border-radius:0.3rem;
             margin:1rem 0;
+            background-color:$gamong;
+            color:white;
         }
         &-article{
             display:flex;
             &-nav{
                 width:18%;
-                border:1px solid black;
+                border:1px solid $gray-light;
                 margin-right:2%;
                 border-radius:0.3rem;
             }
             &-article{
                 width:80%;
-                border:1px solid black;
+                // border:1px solid black;
 
                 .create{
-                    border:1px solid black;
+                    // border:1px solid black;
                     display:flex;
                     border-radius:0.3rem;
                     padding:1rem;
-
-                    &-profile{width:50px;height:50px;margin-right:1rem;border:1px solid black;border-radius:50%;display:flex;justify-content:center;align-items:center;flex-shrink:0;}
-                    &-input{width:100%;border:1px solid black;border-radius:0.3rem;display:flex;align-items:center;padding-left:1rem;font-weight:bold;}
+                    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                    &-profile{width:50px;height:50px;margin-right:1rem;border-radius:50%;display:flex;justify-content:center;align-items:center;flex-shrink:0;background-color:$gamong-dark;color:white;font-size:1.2rem;}
+                    &-text{
+                        width:100%;
+                        border:1px solid none;
+                        color:$gray-dark;
+                        font-size:0.8rem;
+                        border-radius:0.3rem;
+                        display:flex;
+                        align-items:center;
+                        padding-left:1rem;
+                        transition:all .23s;
+                        cursor: pointer;
+                        &:hover{
+                            background:$gray-more-light;
+                        }
+                    }
+                    &-input{
+                        width:100%;display:flex;
+                        &-text{
+                            width:80%;
+                            .CustomInput{
+                                height:100%;width:100%;padding:1rem;
+                                border:none;
+                                border-bottom:1px solid black;
+                            }
+                            margin-right:7%;
+                        }
+                        &-button{
+                            width:13%;cursor:pointer;
+                            border-radius:0.3rem;
+                            background-color:$gamong-dark;
+                            color:white;font-size:1.2rem;
+                            display:flex;justify-content:center;align-items:center;
+                        }
+                    }
                 }
 
                 .subjects{
-                    border:1px solid black;
+                    // border:1px solid black;
                 }
             }
         }

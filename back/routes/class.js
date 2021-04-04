@@ -123,17 +123,30 @@ router.post("/about",isLoggedIn,async (req,res,next)=>{
 
         const {classId,userId} = req.body;
 
-        const subjects = await Subject.findAll({
+        const exClass = await Class.findOne({
             where:{
-                classId
-            }
+                id:classId,
+            },
+            include:[
+                {
+                    model:User,
+                    where:{id:userId},
+                    as:"owner"
+                }
+            ]
         });
+
+        const fullClassInfo = await exClass.getSubjects({where:{classId}});
 
         res.json({
             result:true,
             msg:"자세한 클래스정보를 찾는데 성공했습니다.",
-            data:subjects,
-        })
+            data:{
+                Class:exClass,
+                subjects:fullClassInfo,
+            },
+        });
+
     } catch(error){
         console.error(error);
         res.json({

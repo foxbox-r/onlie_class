@@ -15,13 +15,10 @@ module.exports = (sequelize,DataTypes)=>{
             type:DataTypes.TEXT,
             allowNull:false,
         },
-        click_count:{
-            type:DataTypes.INTEGER,
-            allowNull:false,
-        },
         start_count:{
             type:DataTypes.INTEGER,
             allowNull:false,
+            defaultValue:0,
         },
     },common.sequelizeDefindSecondParams);  
 
@@ -33,5 +30,5 @@ module.exports = (sequelize,DataTypes)=>{
         db.Class.hasMany(db.Subject);
     }
 
-    return Class; 
+    return Class;  
 }

@@ -9,8 +9,15 @@ const CustomInput = ({
     placeholder,
     ref,
     maxLength,
-    onClick
+    onClick,
+    enterEvent,
 }) => {
+
+    const EnterListener = (e)=>{
+        if(e.key === "Enter"){
+            return enterEvent();
+        }
+    }
 
     return (
         <>
@@ -24,6 +31,7 @@ const CustomInput = ({
                 ref={ref}
                 maxLength={maxLength}
                 onClick={onClick}
+                onKeyPress={e=>EnterListener(e)}
             />
         </>
     )
