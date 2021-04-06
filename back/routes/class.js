@@ -4,7 +4,34 @@ const {Class,User,Subject} = db;
 const cryptoRandomString = require('crypto-random-string');
 const {isLoggedIn,isNotLoggedIn} = require("./middlewares");
 
-// POST /user/join 수업 참여하기
+// POST /class/subject 과제 만들기
+router.post("/subject",isLoggedIn,async (req,res,next)=>{
+    try{
+        console.log(req.body);
+
+        const {title,classId} = req.body;
+        
+        await Subject.create({title,classId})
+
+        const subjects = await Subject.findAll({
+            where:{
+                classId,
+            },
+            order:[['createdAt', 'DESC']],
+        })
+
+        return res.json({
+            result:true,
+            msg:"과제만들기를 성공했습니다.",
+            data:subjects
+        });
+    } catch(error){
+        console.error(error);
+        next(error);
+    }
+});
+
+// POST /class/join 수업 참여하기
 router.post("/join",isLoggedIn,async (req,res,next)=>{
     try{
         const {code,userId} = req.body;
@@ -60,7 +87,7 @@ router.post("/join",isLoggedIn,async (req,res,next)=>{
 });
 
 
-// POST /user 수업 만들기
+// POST /class 수업 만들기
 router.post("/",isLoggedIn,async (req,res,next)=>{
     try{
         console.log(req.body);
@@ -116,7 +143,7 @@ router.post("/",isLoggedIn,async (req,res,next)=>{
     }
 })
 
-// POST class/about body:{userId,classId}
+// POST /class/about body:{userId,classId}
 router.post("/about",isLoggedIn,async (req,res,next)=>{
     try{
         console.log(req.body);
@@ -136,7 +163,7 @@ router.post("/about",isLoggedIn,async (req,res,next)=>{
             ]
         });
 
-        const fullClassInfo = await exClass.getSubjects({where:{classId}});
+        const fullClassInfo = await exClass.getSubjects({where:{classId},order:[['createdAt', 'DESC']]});
 
         res.json({
             result:true,

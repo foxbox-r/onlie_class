@@ -22,6 +22,7 @@ const CustomInput = ({
     return (
         <>
             <input 
+                ref={ref}
                 autoComplete='off'
                 type={type}
                 className={"CustomInput "+className}

@@ -4,12 +4,13 @@ import "./ClassCard.scss"
 const ClassCard = ({
     className,
     classInfo,
+    onClickGoToClassAbout,
 }) => {
     const {title,description,owner,code} = classInfo;
     const {grade,number,name} = owner;
     return (
         <div className={"classCard "+(className.length?className:"")}>
-            <header className="classCard-header" >
+            <header onClick={onClickGoToClassAbout} className="classCard-header" >
                 <h3>{title}</h3>
                 <p>{grade}학년 {owner.class}반 {number}번 {name}</p>
             </header>

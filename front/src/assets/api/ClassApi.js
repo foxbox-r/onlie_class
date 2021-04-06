@@ -2,6 +2,26 @@ import Api from "../../lib/customAxios"
 
 class JoinApi {
 
+    async CreateSubject(title,classId){
+        try{
+
+            const body = {
+                title,
+                classId,
+            }
+
+            const {data} = await Api.post(`/class/subject`,body);
+            
+            return data;
+        } catch(error){
+            console.error(error);
+            return {
+                result:false,
+                msg:"과제만들기를 요청하는 과정에서 에러"
+            };
+        }
+    }
+
     async getCurrentClassInfo(classId,userId){
         try{
 

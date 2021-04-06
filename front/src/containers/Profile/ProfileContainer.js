@@ -2,6 +2,7 @@ import React,{useCallback, useEffect,useState} from 'react';
 import Profile from "../../components/Profile"
 import {observer} from "mobx-react"
 import useStore from "../../lib/hooks/useStore"
+import {useHistory} from "react-router-dom";
 
 const ProfileContainer = () => {
 
@@ -9,6 +10,7 @@ const ProfileContainer = () => {
     const certify = store.CertifyStore;
     const classStore = store.ClassStore;
     const meStore = store.MeStore;
+    const history = useHistory();
 
     const [title,setTitle] = useState("");
     const [description,setDescription] = useState("");
@@ -72,6 +74,15 @@ const ProfileContainer = () => {
         setEditMode(prev=>!prev);
     },[certify.me]);
 
+    // 자세한 수업가기함수를 만드는 함수
+    const createOnClickGoToClassAbout = useCallback((classId)=>{
+        console.log("from createOnClickGoToClassAboutn ",classId);
+        return ()=>{
+            console.log("click");
+            history.push(`/class/about/${classId}`);
+        };
+    },[]);
+
     // 로그아웃하면
     if(!certify.me)
         return null;
@@ -99,6 +110,7 @@ const ProfileContainer = () => {
             editEmail={editEmail}
             setEditEmail={setEditEmail}
             meStore={meStore}
+            createOnClickGoToClassAbout={createOnClickGoToClassAbout}
         />
     )           
 }

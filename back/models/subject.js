@@ -5,7 +5,7 @@ module.exports = (sequelize,DataTypes)=>{
         title:{
             type:DataTypes.STRING(45),
             allowNull:false,
-            unique:true,
+            unique:false,
         },
         content:{
             type:DataTypes.TEXT,

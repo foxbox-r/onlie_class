@@ -12,6 +12,8 @@ class ClassStore{
 
     @observable myClasses = [];
     @observable joinedMyClasses = [];
+    @observable currentSubjects = [];
+    @observable currentClass = null;
 
     @observable isCreateClass = false;
     @observable isCreateClassLoading = false;
@@ -24,7 +26,33 @@ class ClassStore{
     @observable isGetCurrentClassInfo = false;
     @observable isGetCurrentClassInfoLoading = false;
     @observable isGetCurrentClassInfoError = null;
+
+    @observable isCreateSubject = false;
+    @observable isCreateSubjectLoading = false;
+    @observable isCreateSubjectError = null;
  
+    @action
+    tryCreateSubject = async (title,classId) => {
+
+        this.isCreateSubjectLoading = true;
+        this.isCreateSubjectError = null;
+        this.isCreateSubject = false;
+
+        const response = await ClassApi.CreateSubject(title,Number(classId));
+
+        console.log("from tryCreateSubject",response);
+
+        if(response.result){
+            this.currentSubjects = response.data;
+            this.isCreateSubject = true;
+        } else{
+            this.isCreateSubjectError = response.msg;
+        }
+        this.isCreateSubjectLoading = false;
+
+        return response;
+    }
+
     @action
     tryGetCurrentClassInfo = async (classId) => {
 
@@ -51,6 +79,8 @@ class ClassStore{
         console.log("from tryGetCurrentClassInfo",response);
 
         if(response.result){
+            this.currentSubjects = response.data.subjects; 
+            this.currentClass = response.data.Class;
             this.isGetCurrentClassInfo = true;
         } else{
             this.isGetCurrentClassInfoError = response.msg;
