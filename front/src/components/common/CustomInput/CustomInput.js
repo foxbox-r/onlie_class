@@ -32,7 +32,7 @@ const CustomInput = ({
                 ref={ref}
                 maxLength={maxLength}
                 onClick={onClick}
-                onKeyPress={e=>EnterListener(e)}
+                onKeyPress={enterEvent&&(e=>EnterListener(e))}
             />
         </>
     )

@@ -4,6 +4,7 @@
     border-radius:0.4rem;
     background-color:rgb(241, 241, 241);
     &-header{
+        cursor:pointer;
         background-color:tomato;color:white;padding:1rem;border-radius:0.4rem;
         display:flex;
         justify-content:space-between;
